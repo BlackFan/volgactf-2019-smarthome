@@ -1,6 +1,7 @@
 mqtt = require('mqtt');
 
 var client;
+var client2;
 
 clientConnect();
 
@@ -20,29 +21,22 @@ function clientConnect() {
 		function() {client.reconnect();},
 		9000
 	);
+	setInterval(
+		function() {
+			client2 = mqtt.connect({host: 'mqtt.volgactf-iot.pw',
+					protocol: 'mqtts',
+			        port: 8883,
+			        path: '/',
+			        clientId: 'clientid_admin_d8edda89e361aeb90b11a04d12b2a805', 
+			        username: 'admin', 
+			        password: 'decead',
+			        reconnectPeriod: 0
+			});
+						
+			client2.on('connect', function () {
+				client2._cleanUp(true);
+			})
+		},
+		90000
+	);
 }
-
-
-client.on('connect', function () {
-	console.log('connected');
-})
-
-client.on('close', function () {
-	console.log('close');
-})
-
-client.on('offline', function () {
-	console.log('offline');
-})
-
-client.on('error', function (error) {
-	console.log('error ' + error);
-})
-
-client.on('end', function () {
-	console.log('end');
-})
-
-client.on('message', function (topic, message) {
-	console.log(topic, message.toString())
-})
