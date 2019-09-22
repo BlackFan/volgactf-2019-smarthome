@@ -1,0 +1,9 @@
+{
+	"gateway": "gateway02",
+	"password": "1e45401b2c1c9108",
+	"FLAG_1": "VolgaCTF_IOT_flag2_d70a1c4ad8b3736ba05fa9b8cb33a6a0",
+	"FLAG_2": "VolgaCTF_IOT_flag3_84149dfc969595efe4fb437c96b88cee",
+	"camera": {},
+	"mqttHost": "mqtt.volgactf-iot.pw",
+	"apiHost": "https://api.volgactf-iot.pw"
+}

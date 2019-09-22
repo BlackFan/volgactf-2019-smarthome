@@ -1,0 +1,11 @@
+body,html {
+  height: 100%;
+}
+
+.but:active {
+  transform: scale(1.2);
+}
+
+.navbar {
+  background-color: #fad31c;
+}

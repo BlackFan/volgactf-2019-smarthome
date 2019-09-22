@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content: https://volgactf-iot-storage.s3.eu-west-2.amazonaws.com https://storage.volgactf-iot.pw; connect-src https://api.volgactf-iot.pw/ wss://mqtt.volgactf-iot.pw:8083 ">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Smart Home</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-light">
+          <span class="navbar-brand mb-0 h1">VolgaCTF Smart Home</span>
+        </nav>
+
+        <div class="container" id="render">
+        </div>
+
+        <script id="loginTpl" type="text/x-jsrender">
+            <div class="card mt-4">
+                <article class="card-body">
+                <h4 class="card-title mb-4 mt-1">Sign in</h4>
+                    <form>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input id="username" class="form-control" placeholder="username" type="text" value="{{>username}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input id="password" class="form-control" placeholder="******" type="password" value="{{>password}}">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="login" class="btn btn-primary btn-block"> Login  </button>
+                    </div>                                                          
+                    </form>
+                </article>  
+                <div class="card-footer text-center">
+                    <a href="volgactf://smarthome/?url=https://volgactf-iot.pw/" id="help">Contest Site</a>
+                </div>
+            </div>
+            <div class="alert alert-{{>type}} text-center mt-2 {{>showError}}" id="error" role="alert">{{>error}}</div>
+        </script>
+
+        <script id="gatewayTpl" type="text/x-jsrender">
+            {{for gateways}}
+            <h4 class="mb-4 mt-3">{{>gid}}</h4>
+            <div class="row">
+                {{for devices}}
+                <div class="col-6">
+                    <div class="card" id="device" data-id="{{>id}}">
+                        <div class="card-body text-center">
+                            <img src="img/{{>type}}.svg" class="w-50 mx-auto mb-2">
+                            <h4>{{>name}}</h4> 
+                        </div>
+                    </div>
+                </div>
+                {{/for}}
+            </div> 
+            {{/for}} 
+        </script>
+
+        <script id="cameraTpl" type="text/x-jsrender">
+            <div class="row align-items-center mb-3 mt-3">
+                <div class="col">
+                    <h4>{{>name}}</h4>
+                </div>
+                <div class="col-2">
+                    <img class="but img-fluid" id="photo" src="img/icons/camera.svg"/>
+                </div>
+                <div class="col-2">
+                    <img class="but img-fluid" id="refresh" src="img/icons/sync.svg"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <img src="img/spinner.gif" data-src="{{>last}}" id="mainImage" class="img-fluid">
+                </div>
+            </div>
+            <h4 class="mb-4 mt-3">History</h4>
+            {{for results}}
+            <div class="row">
+                <div class="col">{{>created_at}}</div>
+                <div class="col"><a href="#" data-file="{{>text}}" id="image">View Image</a></div>
+            </div>
+            {{/for}}
+        </script>
+
+        <script id="sensorTpl" type="text/x-jsrender">
+            <div class="row align-items-center mb-3 mt-3">
+                <div class="col">
+                    <h4>{{>name}}</h4>
+                </div>
+                <div class="col-2">
+                    <img class="but img-fluid" id="refresh" src="img/icons/sync.svg"/>
+                </div>
+            </div>
+            <h4 class="mb-3 mt-3">History</h4>
+            {{for results}}
+            <div class="row">
+                <div class="col">{{>created_at}}</div>
+                <div class="col">{{>text}}</div>
+            </div>
+            {{/for}}
+        </script>
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/mqtt.min.js"></script>
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="js/jsrender.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
